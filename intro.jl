@@ -157,7 +157,7 @@ A_big = randn(1000,1000)
 # For performance sensitive code this can be helpful to make sure things are fast!
 
 # More array operations
-x = rand(5)
+x = rand(1,5)
 A = rand(5,6)
 
 # Matrix multiplication
@@ -233,7 +233,7 @@ using Plots
 # exactly what packages and verisons everyone is using
 # (including old versions of your own code!)
 # Inside the project directory type
-# ] activate .
+#] activate .
 # This will create a new environment, you should see
 # (intro-tutorial) pkg>
 # This is the package prompt for our new environment
@@ -283,7 +283,7 @@ using Zygote
 f(x) = x^2
 
 # We can ask Zygote for the gradient w.r.t. x at specific values
-gradient(f,2.)
+gradient(f,4.)
 
 # Let's make sure this is what we expect
 # by writing Unit Tests
@@ -295,9 +295,9 @@ using Test
 
 # @testset is a nice way of collecting related tests
 @testset "Gradients of f = x^2" begin
-    @test gradient(f,0.) == 0.
-    @test gradient(f,1.) == 2.
-    @test gradient(f,2.) == 3.
+    @test gradient(f,0.)[1] == 0.
+    @test gradient(f,1.)[1] == 2.
+    @test gradient(f,2.)[1] == 4.
 end
 
 # Note that gradient returns a tuple, one value for each argument.
@@ -316,3 +316,11 @@ gradient(g,3.,2.)
 # Double click to "stage" your changes.
 # Write a commit message
 # Create a commit
+
+## Finding Help
+# If you have questions about how to use Julia in general
+# First search the very active community forum:
+# https://discourse.julialang.org/
+# If your question has not been answered yet, try asking there!
+# This way future users can benefit from your questions
+# Alternatively, you can ask on our course forum.
