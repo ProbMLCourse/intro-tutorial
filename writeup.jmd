@@ -1,0 +1,71 @@
+---
+title : Literate Programming Example
+author : My Name
+date: 6th Janurary 2020
+---
+
+# Literate Programming
+
+This is a fancy way to make writeups that include text, math, plots, and code.
+It lets us avoid writing code in one file, evaluating it, and copying the output
+into LaTeX.
+The code that we are writing is evaluated in place.
+
+## Text with Markdown
+
+We can use standard markdown like **bold** and *italics*
+* and
+* make
+* lists
+
+## Code
+
+For example
+
+```julia
+print("hello world")
+```
+
+Sometimes we'll want to share the code without showing the output
+Use the standard `;` to supress output
+
+```julia
+1+1
+```
+
+```julia
+1+1; #; supresses output
+```
+
+## Plots
+
+Calling plot commands will output the plot directly in the file!
+
+```julia; fig_cap="My Figure Caption"
+using Plots
+
+plot(-1:0.01:1,x->x^2)
+```
+
+We can make the file in Julia by running
+
+## LaTeX Math
+
+Get syntax highlighting with Atom `language-latex` package.
+
+You can write inline math $x^2$ or block math like
+
+$$
+x^3
+$$
+
+# Compile the file into a pdf
+
+I reccomend evaluating the julia code using `Shift+Enter` as usual.
+But when you're ready to make your writeup you can run the following code!
+
+```julia; eval=false
+using Weave
+weave("writeup.jmd", doctype = "md2pdf")
+```
+and opening up `writeup.pdf`!
