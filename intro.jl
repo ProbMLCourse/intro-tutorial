@@ -150,10 +150,32 @@ eachslice(A,dims=1) # for more than just 2D matrices
 # Assessing your code performance is easy in Julia
 # for instance, should we broadcast sum over eachrow or sum with dims keword?
 # We can use the BenchmarkTools.@btime macro to find out!
+# Let's start using Plots
+using BenchmarkTools
+# uh oh... we don't have that package installed!
+
+
+### Package manager
+
+# We can access the package manager by typing ] into the REPL
+# From here we can ] add PackageName to get the package.
+# However! let's do even better.
+# To share code, like the starter code, it is very helpful  to know
+# exactly what packages and verisons everyone is using
+# (including old versions of your own code!)
+# Inside the project directory type
+#] activate .
+# This will create a new environment, you should see
+# (intro-tutorial) pkg>
+# This is the package prompt for our new environment
+# You can see what packages are installed by
+# pkg> status
+# Now let's add packages!
+# ] add BenchmarkTools
 using BenchmarkTools
 A_big = randn(1000,1000)
-@btime sum.(eachrow(A_big))
-@btime sum(A_big,dims=2)
+@btime sum.(eachrow(A_big));
+@btime sum(A_big,dims=2);
 # For performance sensitive code this can be helpful to make sure things are fast!
 
 # More array operations
@@ -219,27 +241,6 @@ end
 # We will often ask for you to produce plots in the assignment
 # Both for our assessment, and so you can visualize difficult concepts
 
-# Let's start using Plots
-using Plots
-# uh oh... we don't have that package installed!
-
-
-### Package manager
-
-# We can access the package manager by typing ] into the REPL
-# From here we can ] add PackageName to get the package.
-# However! let's do even better.
-# To share code, like the starter code, it is very helpful  to know
-# exactly what packages and verisons everyone is using
-# (including old versions of your own code!)
-# Inside the project directory type
-#] activate .
-# This will create a new environment, you should see
-# (intro-tutorial) pkg>
-# This is the package prompt for our new environment
-# Now let's add packages!
-# ] add Plots
-
 # Okay, now let's start using Plots
 using Plots
 # it will take some time to compile the package the first time
@@ -295,9 +296,9 @@ using Test
 
 # @testset is a nice way of collecting related tests
 @testset "Gradients of f = x^2" begin
-    @test gradient(f,0.)[1] == 0.
-    @test gradient(f,1.)[1] == 2.
-    @test gradient(f,2.)[1] == 4.
+    @test gradient(f,0.) == 0.
+    @test gaadient(f,1.) == 2.
+    @test gradient(f,2.) == 3.
 end
 
 # Note that gradient returns a tuple, one value for each argument.
