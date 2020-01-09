@@ -124,6 +124,9 @@ B_re[1, 2:4]
 [1,2,3][1]
 [1,2,3][3]
 [1,2,3][end]
+[1,2,3][-1]
+[1,2,3][0]
+[1,2,3][2:-1:1]
 
 # Functions on Arrays
 # Another important convention in Julia is that elementwise functions
@@ -285,7 +288,7 @@ using Zygote
 f(x) = x^2
 
 # We can ask Zygote for the gradient w.r.t. x at specific values
-gradient(f,4.)
+gradient(f,0.)
 
 # Let's make sure this is what we expect
 # by writing Unit Tests
@@ -297,9 +300,9 @@ using Test
 
 # @testset is a nice way of collecting related tests
 @testset "Gradients of f = x^2" begin
-    @test gradient(f,0.) == 0.
-    @test gaadient(f,1.) == 2.
-    @test gradient(f,2.) == 3.
+    @test gradient(f,0.)[1] == 0.
+    @test gradient(f,1.)[1] == 2.
+    @test gradient(f,2.)[1] == 4.
 end
 
 # Note that gradient returns a tuple, one value for each argument.
