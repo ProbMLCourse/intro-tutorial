@@ -281,7 +281,7 @@ savefig("my_distributions.pdf")
 
 # Automatic Differentiation
 # We can use the Zygote.jl package for reverse-mode AD
-# ] add Zygote.jl
+# ] add Zygote
 using Zygote
 
 # Here is a function we want the gradient of:
